@@ -1,28 +1,33 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    /* $name = filter_input(INPUT_POST, 'name', htmlspecialchars($_POST['name']));
-    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $subject = filter_input(INPUT_POST, 'subject', htmlspecialchars($str));
-    $message = filter_input(INPUT_POST, 'message', htmlspecialchars($str)); */
 
-    $name = htmlspecialchars(stripslashes(trim($_POST['name'])));
-    $subject = htmlspecialchars(stripslashes(trim($_POST['subject'])));
-    $email = htmlspecialchars(stripslashes(trim($_POST['email'])));
-    $message = htmlspecialchars(stripslashes(trim($_POST['message'])));
+    $nombre = htmlspecialchars(trim($_POST["nombre"]));
+    $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
+    $asunto = htmlspecialchars(trim($_POST["asunto"]));
+    $mensaje = htmlspecialchars(trim($_POST["mensaje"]));
 
-    if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-        echo "Invalid email format";
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "El correo que ingresaste no es válido.";
         exit;
     }
 
-    $to = "irvinfdzdev805@gmail.com";
-    $headers = "From: $email";
-    $body = "Name: $name\nEmail: $email\nSubject: $subject\nMessage: $message";
+    if (empty($nombre) || empty($mensaje)) {
+        echo "Todos los campos son obligatorios.";
+        exit;
+    }
+
+    $to = 'test@ferisolucionesti.com.mx';
+    $subject = 'Nuevo Mensaje de Contacto';
+    $body = "Nombre: $nombre\nEmail: $email\nAsunto: $asunto\nMensaje:\n$mensaje";
+    $headers = "From: $email" . "\r\n" .
+            "Reply-To: $email" . "\r\n" .
+            "X-Mailer: PHP/" . phpversion();
 
     if (mail($to, $subject, $body, $headers)) {
-        echo "Message sent successfully";
+        echo "Mensaje enviado correctamente";
     } else {
-        echo "Failed to send message";
+        echo "Error al enviar el mensaje";
     }
+} else {
+    echo "Método no permitido";
 }
-?>
