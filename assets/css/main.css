@@ -1,8 +1,11 @@
 /* Fonts */
 :root {
-  --default-font: "Source Sans Pro",  sans-serif /* "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" */;
-  --heading-font: "Source Sans Pro",  sans-serif;
-  --nav-font: "Source Sans Pro",  sans-serif /* "Poppins",  sans-serif */;
+  /* --default-font: "Montserrat", serif;
+  --heading-font: font-family: "Montserrat", serif;
+  --nav-font: font-family: "Montserrat", serif; */
+  --default-font: "Open Sans", serif;
+  --heading-font: font-family: "Open Sans", serif;
+  --nav-font: font-family: "Open Sans", serif;
 }
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
@@ -689,7 +692,7 @@ section,
   font-size: 48px;
   font-weight: 300;
   margin-bottom: 15px;
-  color: #bd1515;
+  color: #4b892c;
 }
 
 .section-title p {
